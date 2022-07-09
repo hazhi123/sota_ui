@@ -1,23 +1,39 @@
+## Packages sota_ui - Framework Flutter >= 3.0.0 
+
+Dependencias instaladas:
+
+```dart
+dependencies:
+  bot_toast: ^4.0.2
+  flutter_spinkit: ^5.1.0
+  shared_preferences: ^2.0.15
+  flutter_svg: ^1.1.0
+  lottie: ^1.3.0
+  cached_network_image: ^3.2.1
+  animate_do: ^2.1.0
+  flutter_form_builder: ^7.2.1
+  form_builder_validators: ^8.1.1
+  url_launcher: ^6.1.2
+  share_plus: ^4.0.8
+  carousel_slider: ^4.1.1
+  connectivity_plus: ^2.3.4
+  device_info_plus: ^3.2.4
+  permission_handler: ^9.2.0
+  syncfusion_flutter_calendar: ^20.1.58
+  syncfusion_flutter_barcodes: ^20.1.58
+  sliding_up_panel: ^2.0.0+1
+  dio: ^4.0.6
+  provider: ^6.0.3
+  page_transition: ^2.0.5
+  # ---------------------------------------------------
+  # En pruebas
+  # ---------------------------------------------------
+  path_provider: ^2.0.10
+  path: ^1.8.0
+  intl: ^0.17.0
+```
+
 <!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
 ## Getting started
 
 TODO: List prerequisites and provide or point to information on how to
@@ -36,4 +52,4 @@ const like = 'sample';
 
 TODO: Tell users more about the package: where to find more information, how to 
 contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+from the package authors, and more. -->
