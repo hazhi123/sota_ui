@@ -10,7 +10,7 @@ class ModalSui extends StatelessWidget {
   final dynamic height, width;
   final dynamic hp, wp;
   final Color? color;
-  final bool isClose;
+  final bool isClose, tWhite;
 
   const ModalSui({
     Key? key,
@@ -20,6 +20,7 @@ class ModalSui extends StatelessWidget {
     this.width,
     this.hp,
     this.wp,
+    this.tWhite = false,
     this.color,
     this.isClose = true,
   }) : super(key: key);
@@ -41,7 +42,7 @@ class ModalSui extends StatelessWidget {
             child: TextSui(
               titulo,
               size: 16,
-              white: true,
+              white: tWhite,
               bold: true,
             ),
           ),
@@ -52,7 +53,7 @@ class ModalSui extends StatelessWidget {
               child: ButtonSui(
                 onPressed: () => Navigator.pop(context),
                 size: 35,
-                tWhite: true,
+                tWhite: tWhite,
                 rounded: 10,
                 icon: Icons.close,
                 iconSize: 25,
