@@ -113,7 +113,7 @@ lottieSui(
   Color color = Colors.black,
 }) {
   return Lottie.asset(
-    loadingLot,
+    text,
     width: width ?? size,
     height: height ?? size,
     fit: isCover ? BoxFit.cover : fit,
