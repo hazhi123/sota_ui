@@ -3,6 +3,7 @@ import 'dart:developer' as develop;
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// import 'package:encrypt/encrypt.dart' as encrypt;
 
 logSui(String text, data) {
   if (kDebugMode) {
@@ -65,3 +66,18 @@ timerSui(time, funcion) {
   }
   Timer(d, funcion);
 }
+
+// encryptSui(type, data) {
+//   final key = encrypt.Key.fromUtf8('1f8ec6a83ab730706c48647e94a75114');
+//   final iv = encrypt.IV.fromLength(16);
+//   final encrypter = encrypt.Encrypter(encrypt.AES(key));
+//   dynamic enc;
+//   if (type == 'en') {
+//     var value = encrypter.encrypt(data, iv: iv);
+//     enc = value.base64;
+//   }
+//   if (type == 'de') {
+//     enc = encrypter.decrypt(encrypt.Encrypted.from64(data), iv: iv);
+//   }
+//   return enc;
+// }

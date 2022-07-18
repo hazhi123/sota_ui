@@ -73,15 +73,59 @@ class FieldsFormSui extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget field = FormBuilderTextField(name: 'field');
 
+    InputDecoration decoration = InputDecoration(
+      enabledBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        borderSide: BorderSide(
+          width: 1,
+          color: color,
+        ),
+      ),
+      errorBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        borderSide: BorderSide(
+          color: Colors.red,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        borderSide: BorderSide(
+          color: color,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        borderSide: BorderSide(
+          color: color,
+        ),
+      ),
+      iconColor: color,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
+      labelText: label,
+      labelStyle: TextStyle(
+        color: lColor,
+        fontSize: lSize.toDouble(),
+        fontWeight: lBold ? FontWeight.bold : FontWeight.normal,
+      ),
+      hintText: hint,
+      hintStyle: TextStyle(
+        color: hColor,
+        fontSize: hSize.toDouble(),
+        fontWeight: hBold ? FontWeight.bold : FontWeight.normal,
+      ),
+      contentPadding: contentPadding,
+    );
+
     switch (type) {
       case textConst:
-        field = textfield(context);
+        field = textfield(context, decoration);
         break;
       case dropdownConst:
-        field = dropdownfield(context);
+        field = dropdownfield(context, decoration);
         break;
       case datetimeConst:
-        field = datetimeField(context);
+        field = datetimeField(context, decoration);
         break;
       default:
     }
@@ -89,7 +133,7 @@ class FieldsFormSui extends StatelessWidget {
     return field;
   }
 
-  textfield(context) {
+  textfield(context, decoration) {
     return Theme(
       data: Theme.of(context).copyWith(
         // canvasColor: canvasColor,
@@ -98,30 +142,7 @@ class FieldsFormSui extends StatelessWidget {
       child: FormBuilderTextField(
         name: name,
         obscureText: isPassword,
-        decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          iconColor: color,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          labelText: label,
-          labelStyle: TextStyle(
-            color: lColor,
-            fontSize: lSize.toDouble(),
-            fontWeight: lBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: hColor,
-            fontSize: hSize.toDouble(),
-            fontWeight: hBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          contentPadding: contentPadding,
-        ),
+        decoration: decoration,
         style: TextStyle(
           color: tWhite ? Colors.white : tColor,
           fontSize: tSize.toDouble(),
@@ -149,7 +170,7 @@ class FieldsFormSui extends StatelessWidget {
     );
   }
 
-  dropdownfield(context) {
+  dropdownfield(context, decoration) {
     return Theme(
       data: Theme.of(context).copyWith(
         canvasColor: canvasColor,
@@ -158,29 +179,7 @@ class FieldsFormSui extends StatelessWidget {
       child: FormBuilderDropdown(
         name: name,
         initialValue: initialValue,
-        decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          iconColor: Colors.white,
-          prefixIcon: prefixIcon,
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: hColor,
-            fontSize: hSize.toDouble(),
-            fontWeight: hBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          labelText: label,
-          labelStyle: TextStyle(
-            color: lColor,
-            fontSize: lSize.toDouble(),
-            fontWeight: lBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          contentPadding: contentPadding,
-        ),
+        decoration: decoration,
         icon: Icon(
           Icons.arrow_drop_down,
           color: iColor ?? color,
@@ -208,7 +207,7 @@ class FieldsFormSui extends StatelessWidget {
     );
   }
 
-  datetimeField(context) {
+  datetimeField(context, decoration) {
     return Theme(
       data: Theme.of(context).copyWith(
         // canvasColor: canvasColor,
@@ -218,29 +217,7 @@ class FieldsFormSui extends StatelessWidget {
         name: name,
         inputType: inputType ?? InputType.date,
         format: format ?? DateFormat('dd-MM-yyyy'),
-        decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          iconColor: color,
-          prefixIcon: prefixIcon,
-          labelText: label,
-          labelStyle: TextStyle(
-            color: lColor,
-            fontSize: lSize.toDouble(),
-            fontWeight: lBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: hColor,
-            fontSize: hSize.toDouble(),
-            fontWeight: hBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          contentPadding: contentPadding,
-        ),
+        decoration: decoration,
         style: TextStyle(
           color: tWhite ? Colors.white : tColor,
           fontSize: tSize.toDouble(),
