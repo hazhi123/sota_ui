@@ -1,8 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-import '../widgets/text_widget.dart';
+import 'package:sotaui/sotaui.dart';
 
 toastSui(
   String texto, {
@@ -78,7 +76,12 @@ loadingSui({Widget? loading}) {
   );
 }
 
-notificationSui({Widget? child}) {
+notificationSui({
+  required Widget child,
+  double? width,
+  double? height,
+  Color? color,
+}) {
   bool enableSlideOff = true;
   bool onlyOne = true;
   bool crossPage = true;
@@ -94,77 +97,28 @@ notificationSui({Widget? child}) {
     duration: Duration(seconds: seconds),
     backButtonBehavior: backButtonBehavior,
     toastBuilder: (cancel) {
-      return child ??
-          _NotificationWidget(
-            cancelFunc: cancel,
-          );
+      return Container(
+        width: width ?? 300,
+        height: height ?? 70,
+        color: color ?? Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: <Widget>[
+            Expanded(child: child),
+            const SizedBox(width: 10),
+            ButtonSui(
+              size: 30,
+              rounded: 15,
+              onPressed: cancel,
+              icon: Icons.close,
+              tColor: Colors.black,
+            )
+          ],
+        ),
+      );
     },
     enableSlideOff: enableSlideOff,
     onlyOne: onlyOne,
     crossPage: crossPage,
   );
-}
-
-class _NotificationWidget extends StatefulWidget {
-  final CancelFunc? cancelFunc;
-
-  const _NotificationWidget({this.cancelFunc});
-
-  @override
-  _NotificationWidgetState createState() => _NotificationWidgetState();
-}
-
-class _NotificationWidgetState extends State<_NotificationWidget> {
-  bool loveMe = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.grey[200],
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Row(
-              children: [
-                // IconButton(
-                //   icon: const Icon(Icons.favorite),
-                //   color: loveMe ? Colors.redAccent : Colors.grey,
-                //   onPressed: () {
-                //     setState(() {
-                //       loveMe = !loveMe;
-                //       BotToast.showText(
-                //           onlyOne: true,
-                //           text: loveMe ? "Yes, I love you.😘" : "No!!!!😫");
-                //     });
-                //   },
-                // ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      TextSui(
-                        'Mensaje',
-                        bold: true,
-                      ),
-                      TextSui(
-                        'Sub mensaje',
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.cancel),
-            color: loveMe ? Colors.redAccent : Colors.grey,
-            onPressed: widget.cancelFunc,
-          )
-        ],
-      ),
-    );
-  }
 }

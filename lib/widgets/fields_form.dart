@@ -31,6 +31,7 @@ class FieldsFormSui extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final DateFormat? format;
   final InputType? inputType;
+  final double rounded;
 
   const FieldsFormSui({
     Key? key,
@@ -44,6 +45,7 @@ class FieldsFormSui extends StatelessWidget {
     this.tColor = Colors.black,
     this.hint,
     this.inputType,
+    this.rounded = 30.0,
     this.format,
     this.hBold = false,
     this.hColor = Colors.black,
@@ -75,26 +77,26 @@ class FieldsFormSui extends StatelessWidget {
 
     InputDecoration decoration = InputDecoration(
       enabledBorder: OutlineInputBorder(
-        borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        borderRadius: BorderRadius.all(Radius.circular(rounded)),
         borderSide: BorderSide(
           width: 1,
           color: color,
         ),
       ),
-      errorBorder: const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-        borderSide: BorderSide(
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(rounded)),
+        borderSide: const BorderSide(
           color: Colors.red,
         ),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        borderRadius: BorderRadius.all(Radius.circular(rounded)),
         borderSide: BorderSide(
           color: color,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        borderRadius: BorderRadius.all(Radius.circular(rounded)),
         borderSide: BorderSide(
           color: color,
         ),
@@ -149,11 +151,16 @@ class FieldsFormSui extends StatelessWidget {
           fontWeight: tBold ? FontWeight.bold : FontWeight.normal,
         ),
         onChanged: (val) {},
-        valueTransformer: (text) => num.tryParse(text!),
+        // valueTransformer: (text) => num.tryParse(text!),
         validator: FormBuilderValidators.compose([
-          if (isRequired) FormBuilderValidators.required(),
-          if (isNumber) FormBuilderValidators.numeric(),
-          if (isEmail) FormBuilderValidators.email(),
+          if (isRequired)
+            FormBuilderValidators.required(
+                errorText: 'Este campo es requerido'),
+          if (isNumber)
+            FormBuilderValidators.numeric(
+                errorText: 'Este campo debe ser númerico'),
+          if (isEmail)
+            FormBuilderValidators.email(errorText: 'El Correo inválido'),
         ]),
         maxLength: maxLength,
         maxLines: isMulti ? null : 1,
@@ -200,7 +207,9 @@ class FieldsFormSui extends StatelessWidget {
           fontWeight: tBold ? FontWeight.bold : FontWeight.normal,
         ),
         validator: FormBuilderValidators.compose([
-          if (isRequired) FormBuilderValidators.required(),
+          if (isRequired)
+            FormBuilderValidators.required(
+                errorText: 'Este campo es requerido'),
         ]),
         items: items,
       ),
@@ -225,7 +234,9 @@ class FieldsFormSui extends StatelessWidget {
         ),
         initialValue: initialValue ?? DateTime.now(),
         validator: FormBuilderValidators.compose([
-          if (isRequired) FormBuilderValidators.required(),
+          if (isRequired)
+            FormBuilderValidators.required(
+                errorText: 'Este campo es requerido'),
         ]),
       ),
     );
