@@ -1,9 +1,9 @@
-// import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
-
-import '../utils/utils.dart';
+import '../utils/image_util.dart';
 
 class ImageSui extends StatelessWidget {
   final String? img, url, svg, lottie;
@@ -51,23 +51,23 @@ class ImageSui extends StatelessWidget {
       fit: isCover ? BoxFit.cover : fit,
     );
 
-    // Widget urlWidget = CachedNetworkImage(
-    //   imageUrl: url ?? '',
-    //   fit: fit,
-    //   width: width ?? size,
-    //   height: height ?? size,
-    //   placeholder: (context, url) => SpinKitFadingFour(
-    //     color: color,
-    //     size: 30,
-    //   ),
-    //   errorWidget: (context, url, error) =>
-    //       errorWidget ??
-    //       const Icon(
-    //         Icons.image,
-    //         size: 30,
-    //         color: Colors.black,
-    //       ),
-    // );
+    Widget urlWidget = CachedNetworkImage(
+      imageUrl: url ?? '',
+      fit: fit,
+      width: width ?? size,
+      height: height ?? size,
+      placeholder: (context, url) => SpinKitFadingFour(
+        color: color,
+        size: 30,
+      ),
+      errorWidget: (context, url, error) =>
+          errorWidget ??
+          const Icon(
+            Icons.image,
+            size: 30,
+            color: Colors.black,
+          ),
+    );
 
     Widget lottieWidget = Lottie.asset(
       lottie ?? loadingLot,
@@ -80,12 +80,15 @@ class ImageSui extends StatelessWidget {
         ? svgWidget
         : lottie != null
             ? lottieWidget
-            : imgWidget;
+            : url != null
+                ? urlWidget
+                : imgWidget;
 
     Widget heroWidget = Hero(tag: hero, child: imgx);
 
     return Padding(
-        padding: padding ?? const EdgeInsets.all(10.0),
-        child: hero.isEmpty ? imgx : heroWidget);
+      padding: padding ?? const EdgeInsets.all(10.0),
+      child: hero.isEmpty ? imgx : heroWidget,
+    );
   }
 }
