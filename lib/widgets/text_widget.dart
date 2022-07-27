@@ -4,11 +4,24 @@ class TextSui extends StatelessWidget {
   final String text;
   final Color? color;
   final double size;
-  final bool bold, light, black, left, center, right, white, softWrap, overflow;
+  final bool bold,
+      light,
+      black,
+      regular,
+      left,
+      center,
+      right,
+      white,
+      softWrap,
+      overflow;
   final TextAlign? align;
   final int? maxLines;
   final TextStyle? style;
   final EdgeInsets? padding;
+  final double? lSpacing;
+  final double? height;
+  final String? fontFamily;
+  final FontWeight? fontWeight;
 
   const TextSui(
     this.text, {
@@ -17,6 +30,7 @@ class TextSui extends StatelessWidget {
     this.size = 14.0,
     this.bold = false,
     this.light = false,
+    this.regular = false,
     this.black = false,
     this.overflow = false,
     this.align,
@@ -28,6 +42,10 @@ class TextSui extends StatelessWidget {
     this.maxLines,
     this.style,
     this.padding,
+    this.lSpacing,
+    this.height,
+    this.fontFamily,
+    this.fontWeight,
   }) : super(key: key);
 
   @override
@@ -48,15 +66,17 @@ class TextSui extends StatelessWidget {
                     : align,
         style: style ??
             TextStyle(
+              letterSpacing: lSpacing,
               color: white ? Colors.white : color,
+              height: height,
               fontSize: size,
-              fontWeight: bold
-                  ? FontWeight.w700
-                  : light
-                      ? FontWeight.w300
-                      : black
-                          ? FontWeight.w900
-                          : FontWeight.normal,
+              fontFamily: fontFamily,
+              fontWeight: fontWeight ??
+                  (bold
+                      ? FontWeight.w700
+                      : light
+                          ? FontWeight.w100
+                          : FontWeight.w500),
             ),
       ),
     );

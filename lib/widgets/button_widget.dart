@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/image_util.dart';
+import 'image_widget.dart';
 import 'text_widget.dart';
 
 const String materialConst = 'material';
@@ -15,7 +15,7 @@ class ButtonSui extends StatelessWidget {
   final String? type, svg, img;
   final IconData? icon;
   final EdgeInsets? padding;
-  final double? iconSize, width, height, size, rounded, sizeSvg;
+  final double? iconSize, width, height, size, rounded, sizeSvg, lSpacing;
   final double elevation, tSize;
 
   const ButtonSui({
@@ -35,6 +35,7 @@ class ButtonSui extends StatelessWidget {
     this.highlightColor,
     this.width,
     this.height,
+    this.lSpacing,
     this.size,
     this.img,
     this.padding,
@@ -142,6 +143,7 @@ class ButtonSui extends StatelessWidget {
         white: tWhite,
         size: tSize,
         bold: tBold,
+        lSpacing: lSpacing,
       );
 
   iconWidget() => icon != null
@@ -151,11 +153,10 @@ class ButtonSui extends StatelessWidget {
           size: iconSize,
         )
       : svg != null
-          ? imageSui(
-              svg!,
-              isSvg: true,
+          ? ImageSui(
+              svg: svg!,
               size: 30.0,
               color: tWhite ? Colors.white : tColor ?? Colors.black,
             )
-          : imageSui(img!);
+          : ImageSui(img: img!);
 }

@@ -31,6 +31,7 @@ class FieldsFormSui extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final DateFormat? format;
   final InputType? inputType;
+  final double rounded;
 
   const FieldsFormSui({
     Key? key,
@@ -44,6 +45,7 @@ class FieldsFormSui extends StatelessWidget {
     this.tColor = Colors.black,
     this.hint,
     this.inputType,
+    this.rounded = 30.0,
     this.format,
     this.hBold = false,
     this.hColor = Colors.black,
@@ -73,15 +75,59 @@ class FieldsFormSui extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget field = FormBuilderTextField(name: 'field');
 
+    InputDecoration decoration = InputDecoration(
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(rounded)),
+        borderSide: BorderSide(
+          width: 1,
+          color: color,
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(rounded)),
+        borderSide: const BorderSide(
+          color: Colors.red,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(rounded)),
+        borderSide: BorderSide(
+          color: color,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(rounded)),
+        borderSide: BorderSide(
+          color: color,
+        ),
+      ),
+      iconColor: color,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
+      labelText: label,
+      labelStyle: TextStyle(
+        color: lColor,
+        fontSize: lSize.toDouble(),
+        fontWeight: lBold ? FontWeight.bold : FontWeight.normal,
+      ),
+      hintText: hint,
+      hintStyle: TextStyle(
+        color: hColor,
+        fontSize: hSize.toDouble(),
+        fontWeight: hBold ? FontWeight.bold : FontWeight.normal,
+      ),
+      contentPadding: contentPadding,
+    );
+
     switch (type) {
       case textConst:
-        field = textfield(context);
+        field = textfield(context, decoration);
         break;
       case dropdownConst:
-        field = dropdownfield(context);
+        field = dropdownfield(context, decoration);
         break;
       case datetimeConst:
-        field = datetimeField(context);
+        field = datetimeField(context, decoration);
         break;
       default:
     }
@@ -89,7 +135,7 @@ class FieldsFormSui extends StatelessWidget {
     return field;
   }
 
-  textfield(context) {
+  textfield(context, decoration) {
     return Theme(
       data: Theme.of(context).copyWith(
         // canvasColor: canvasColor,
@@ -98,41 +144,23 @@ class FieldsFormSui extends StatelessWidget {
       child: FormBuilderTextField(
         name: name,
         obscureText: isPassword,
-        decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          iconColor: color,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          labelText: label,
-          labelStyle: TextStyle(
-            color: lColor,
-            fontSize: lSize.toDouble(),
-            fontWeight: lBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: hColor,
-            fontSize: hSize.toDouble(),
-            fontWeight: hBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          contentPadding: contentPadding,
-        ),
+        decoration: decoration,
         style: TextStyle(
           color: tWhite ? Colors.white : tColor,
           fontSize: tSize.toDouble(),
           fontWeight: tBold ? FontWeight.bold : FontWeight.normal,
         ),
         onChanged: (val) {},
-        valueTransformer: (text) => num.tryParse(text!),
+        // valueTransformer: (text) => num.tryParse(text!),
         validator: FormBuilderValidators.compose([
-          if (isRequired) FormBuilderValidators.required(),
-          if (isNumber) FormBuilderValidators.numeric(),
-          if (isEmail) FormBuilderValidators.email(),
+          if (isRequired)
+            FormBuilderValidators.required(
+                errorText: 'Este campo es requerido'),
+          if (isNumber)
+            FormBuilderValidators.numeric(
+                errorText: 'Este campo debe ser númerico'),
+          if (isEmail)
+            FormBuilderValidators.email(errorText: 'El Correo inválido'),
         ]),
         maxLength: maxLength,
         maxLines: isMulti ? null : 1,
@@ -149,7 +177,7 @@ class FieldsFormSui extends StatelessWidget {
     );
   }
 
-  dropdownfield(context) {
+  dropdownfield(context, decoration) {
     return Theme(
       data: Theme.of(context).copyWith(
         canvasColor: canvasColor,
@@ -158,29 +186,7 @@ class FieldsFormSui extends StatelessWidget {
       child: FormBuilderDropdown(
         name: name,
         initialValue: initialValue,
-        decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          iconColor: Colors.white,
-          prefixIcon: prefixIcon,
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: hColor,
-            fontSize: hSize.toDouble(),
-            fontWeight: hBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          labelText: label,
-          labelStyle: TextStyle(
-            color: lColor,
-            fontSize: lSize.toDouble(),
-            fontWeight: lBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          contentPadding: contentPadding,
-        ),
+        decoration: decoration,
         icon: Icon(
           Icons.arrow_drop_down,
           color: iColor ?? color,
@@ -201,14 +207,16 @@ class FieldsFormSui extends StatelessWidget {
           fontWeight: tBold ? FontWeight.bold : FontWeight.normal,
         ),
         validator: FormBuilderValidators.compose([
-          if (isRequired) FormBuilderValidators.required(),
+          if (isRequired)
+            FormBuilderValidators.required(
+                errorText: 'Este campo es requerido'),
         ]),
         items: items,
       ),
     );
   }
 
-  datetimeField(context) {
+  datetimeField(context, decoration) {
     return Theme(
       data: Theme.of(context).copyWith(
         // canvasColor: canvasColor,
@@ -218,29 +226,7 @@ class FieldsFormSui extends StatelessWidget {
         name: name,
         inputType: inputType ?? InputType.date,
         format: format ?? DateFormat('dd-MM-yyyy'),
-        decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color),
-          ),
-          iconColor: color,
-          prefixIcon: prefixIcon,
-          labelText: label,
-          labelStyle: TextStyle(
-            color: lColor,
-            fontSize: lSize.toDouble(),
-            fontWeight: lBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: hColor,
-            fontSize: hSize.toDouble(),
-            fontWeight: hBold ? FontWeight.bold : FontWeight.normal,
-          ),
-          contentPadding: contentPadding,
-        ),
+        decoration: decoration,
         style: TextStyle(
           color: tWhite ? Colors.white : tColor,
           fontSize: tSize.toDouble(),
@@ -248,7 +234,9 @@ class FieldsFormSui extends StatelessWidget {
         ),
         initialValue: initialValue ?? DateTime.now(),
         validator: FormBuilderValidators.compose([
-          if (isRequired) FormBuilderValidators.required(),
+          if (isRequired)
+            FormBuilderValidators.required(
+                errorText: 'Este campo es requerido'),
         ]),
       ),
     );

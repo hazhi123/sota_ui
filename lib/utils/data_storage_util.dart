@@ -1,24 +1,31 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+const String boolConst = 'bool';
+const String stringConst = 'string';
+const String listConst = 'list';
+const String intConst = 'int';
+const String doubleConst = 'double';
+const String delConst = 'del';
+
 setLocalStorageSui(String type, String key, value) async {
   SharedPreferences store = await SharedPreferences.getInstance();
   switch (type) {
-    case 'bool':
+    case boolConst:
       store.setBool(key, value);
       break;
-    case 'string':
+    case stringConst:
       store.setString(key, value);
       break;
-    case 'list':
+    case listConst:
       store.setStringList(key, value);
       break;
-    case 'int':
+    case intConst:
       store.setInt(key, value);
       break;
-    case 'double':
+    case doubleConst:
       store.setDouble(key, value);
       break;
-    case 'del':
+    case delConst:
       store.remove(key);
       break;
   }
@@ -27,19 +34,19 @@ setLocalStorageSui(String type, String key, value) async {
 getLocalStorageSui(String type, String key) async {
   SharedPreferences store = await SharedPreferences.getInstance();
   switch (type) {
-    case 'bool':
+    case boolConst:
       if (store.getBool(key) == null) store.setBool(key, false);
       return store.getBool(key) ?? false;
-    case 'string':
+    case stringConst:
       if (store.getString(key) == null) store.setString(key, '');
       return store.getString(key) ?? '';
-    case 'list':
+    case listConst:
       if (store.getStringList(key) == null) store.setStringList(key, []);
       return store.getStringList(key) ?? [];
-    case 'int':
+    case intConst:
       if (store.getInt(key) == null) store.setInt(key, 0);
       return store.getInt(key) ?? 0;
-    case 'double':
+    case doubleConst:
       if (store.getDouble(key) == null) store.setDouble(key, 0.0);
       return store.getDouble(key) ?? 0.0;
   }
