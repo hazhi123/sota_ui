@@ -4,7 +4,7 @@ Dependencias instaladas:
 
 ```dart
 dependencies:
-   bot_toast: ^4.0.2
+  bot_toast: ^4.0.2
   flutter_spinkit: ^5.1.0
   shared_preferences: ^2.0.15
   flutter_svg: ^1.1.0
