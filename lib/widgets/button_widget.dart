@@ -14,7 +14,7 @@ class ButtonSui extends StatelessWidget {
   final String? text;
   final String? type, svg, img;
   final IconData? icon;
-  final EdgeInsets? padding;
+  final EdgeInsets? padding, pButton;
   final double? iconSize, width, height, size, rounded, sizeSvg, lSpacing;
   final double elevation, tSize;
 
@@ -39,6 +39,7 @@ class ButtonSui extends StatelessWidget {
     this.size,
     this.img,
     this.padding,
+    this.pButton,
     this.rounded,
     this.backgroundColor,
     this.sizeSvg,
@@ -66,7 +67,7 @@ class ButtonSui extends StatelessWidget {
           icon: iconWidget(),
           color: color,
           highlightColor: highlightColor,
-          padding: const EdgeInsets.all(0),
+          padding: pButton ?? const EdgeInsets.all(0),
           iconSize: size,
         ),
       );
@@ -80,7 +81,7 @@ class ButtonSui extends StatelessWidget {
     return Container(
       width: width ?? size,
       height: height ?? size,
-      padding: EdgeInsets.all(pd),
+      padding: padding ?? EdgeInsets.all(pd),
       child: MaterialButton(
         onPressed: onPressed,
         color: color,
@@ -89,7 +90,7 @@ class ButtonSui extends StatelessWidget {
                 BorderRadius.circular(rounded == null ? 5.0 : rounded!)),
         child: body(),
         elevation: elevation,
-        padding: padding ?? const EdgeInsets.all(0),
+        padding: pButton ?? const EdgeInsets.all(0),
       ),
     );
   }

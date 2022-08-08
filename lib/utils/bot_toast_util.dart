@@ -38,9 +38,14 @@ toastSui(
   );
 }
 
-loadingSui({Widget? loading}) {
+loadingSui({
+  Widget? loading,
+  int? seconds,
+  double? width,
+  double? height,
+  double? size,
+}) {
   Color backgroundColor = Colors.black54;
-  int seconds = 2;
   bool clickClose = false;
   bool allowClick = true;
   bool ignoreContentClick = false;
@@ -57,14 +62,14 @@ loadingSui({Widget? loading}) {
     animationReverseDuration:
         Duration(milliseconds: animationReverseMilliseconds),
     duration: Duration(
-      seconds: seconds,
+      seconds: seconds ?? 2,
     ),
     backgroundColor: backgroundColor,
     align: Alignment.center,
     toastBuilder: (cancelFunc) {
       return Container(
-        width: 100,
-        height: 100,
+        width: size ?? (width ?? 100),
+        height: size ?? (height ?? 100),
         color: Colors.white,
         child: loading ??
             const SpinKitFadingFour(

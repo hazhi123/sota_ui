@@ -76,27 +76,23 @@ class FieldsFormSui extends StatelessWidget {
     Widget field = FormBuilderTextField(name: 'field');
 
     InputDecoration decoration = InputDecoration(
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(rounded)),
+      enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           width: 1,
           color: color,
         ),
       ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(rounded)),
-        borderSide: const BorderSide(
+      errorBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(
           color: Colors.red,
         ),
       ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(rounded)),
+      focusedErrorBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: color,
         ),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(rounded)),
+      focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: color,
         ),
