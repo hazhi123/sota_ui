@@ -7,7 +7,7 @@ const String intConst = 'int';
 const String doubleConst = 'double';
 const String delConst = 'del';
 
-setLocalStorageSui(String type, String key, value) async {
+setStorageSui(String type, String key, value) async {
   SharedPreferences store = await SharedPreferences.getInstance();
   switch (type) {
     case boolConst:
@@ -31,7 +31,7 @@ setLocalStorageSui(String type, String key, value) async {
   }
 }
 
-getLocalStorageSui(String type, String key) async {
+getStorageSui(String type, String key) async {
   SharedPreferences store = await SharedPreferences.getInstance();
   switch (type) {
     case boolConst:

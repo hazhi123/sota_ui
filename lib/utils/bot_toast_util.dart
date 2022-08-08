@@ -38,7 +38,13 @@ toastSui(
   );
 }
 
-loadingSui({Widget? loading}) {
+loadingSui({
+  Widget? loading,
+  double? size,
+  double? width,
+  double? height,
+  double? lSize,
+}) {
   Color backgroundColor = Colors.black54;
   int seconds = 2;
   bool clickClose = false;
@@ -63,13 +69,13 @@ loadingSui({Widget? loading}) {
     align: Alignment.center,
     toastBuilder: (cancelFunc) {
       return Container(
-        width: 100,
-        height: 100,
+        width: size ?? (width ?? 100),
+        height: size ?? (height ?? 100),
         color: Colors.white,
         child: loading ??
-            const SpinKitFadingFour(
+            SpinKitFadingFour(
               color: Colors.black,
-              size: 50.0,
+              size: lSize ?? 50.0,
             ),
       );
     },
@@ -81,11 +87,11 @@ notificationSui({
   double? width,
   double? height,
   Color? color,
+  int time = 10,
 }) {
   bool enableSlideOff = true;
   bool onlyOne = true;
   bool crossPage = true;
-  int seconds = 10;
   int animationMilliseconds = 200;
   int animationReverseMilliseconds = 200;
   BackButtonBehavior backButtonBehavior = BackButtonBehavior.none;
@@ -94,7 +100,9 @@ notificationSui({
     animationDuration: Duration(milliseconds: animationMilliseconds),
     animationReverseDuration:
         Duration(milliseconds: animationReverseMilliseconds),
-    duration: Duration(seconds: seconds),
+    duration: time.toString().length > 2
+        ? Duration(milliseconds: time)
+        : Duration(seconds: time),
     backButtonBehavior: backButtonBehavior,
     toastBuilder: (cancel) {
       return Container(

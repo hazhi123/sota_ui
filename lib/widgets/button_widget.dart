@@ -62,8 +62,8 @@ class ButtonSui extends StatelessWidget {
     }
   }
 
-  buttonIcon() => Padding(
-        padding: padding ?? const EdgeInsets.all(0),
+  buttonIcon() => Container(
+        margin: margin ?? const EdgeInsets.all(0),
         child: IconButton(
           onPressed: onPressed,
           icon: iconWidget(),
