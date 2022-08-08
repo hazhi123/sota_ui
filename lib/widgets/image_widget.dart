@@ -44,7 +44,7 @@ class ImageSui extends StatelessWidget {
     );
 
     Widget svgWidget = SvgPicture.asset(
-      img ?? '',
+      svg ?? '',
       color: color,
       width: width ?? size,
       height: height ?? size,
