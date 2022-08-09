@@ -38,13 +38,14 @@ toastSui(
   );
 }
 
-loadingSui(
-    {Widget? loading,
-    double? size,
-    double? width,
-    double? height,
-    double? lSize,
-    int? seconds}) {
+loadingSui({
+  Widget? loading,
+  double? size,
+  double? width,
+  double? height,
+  double? lSize,
+  int? seconds,
+}) {
   Color backgroundColor = Colors.black54;
   bool clickClose = false;
   bool allowClick = true;
