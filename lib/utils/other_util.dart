@@ -60,11 +60,11 @@ extension StringCasingExtension on String {
 }
 
 timerSui(time, funcion) {
-  Duration d = Duration(milliseconds: time);
-  if (time.toString().length < 3) {
-    d = Duration(seconds: time);
-  }
-  Timer(d, funcion);
+  Timer(
+      time.toString().length > 2
+          ? Duration(milliseconds: time)
+          : Duration(seconds: time),
+      funcion);
 }
 
 encryptSui(type, data) {

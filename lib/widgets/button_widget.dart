@@ -10,11 +10,11 @@ class ButtonSui extends StatelessWidget {
   final VoidCallback? onPressed;
   final Color? color, tColor, highlightColor, backgroundColor;
   final Widget? child;
-  final bool tWhite, tBold;
+  final bool tWhite, tBold, isRounded;
   final String? text;
   final String? type, svg, img;
   final IconData? icon;
-  final EdgeInsets? padding, pButton;
+  final EdgeInsets? padding, paddingButton, margin;
   final double? iconSize, width, height, size, rounded, sizeSvg, lSpacing;
   final double elevation, tSize;
 
@@ -33,14 +33,16 @@ class ButtonSui extends StatelessWidget {
     this.svg,
     this.iconSize,
     this.highlightColor,
+    this.size,
     this.width,
     this.height,
     this.lSpacing,
-    this.size,
     this.img,
     this.padding,
-    this.pButton,
+    this.margin,
+    this.paddingButton,
     this.rounded,
+    this.isRounded = false,
     this.backgroundColor,
     this.sizeSvg,
     this.elevation = 0.0,
@@ -60,14 +62,14 @@ class ButtonSui extends StatelessWidget {
     }
   }
 
-  buttonIcon() => Padding(
-        padding: padding ?? const EdgeInsets.all(0),
+  buttonIcon() => Container(
+        margin: margin ?? const EdgeInsets.all(0),
         child: IconButton(
           onPressed: onPressed,
           icon: iconWidget(),
           color: color,
           highlightColor: highlightColor,
-          padding: pButton ?? const EdgeInsets.all(0),
+          padding: paddingButton ?? const EdgeInsets.all(0),
           iconSize: size,
         ),
       );
@@ -81,22 +83,29 @@ class ButtonSui extends StatelessWidget {
     return Container(
       width: width ?? size,
       height: height ?? size,
-      padding: padding ?? EdgeInsets.all(pd),
+      padding: EdgeInsets.all(pd),
+      margin: margin,
       child: MaterialButton(
         onPressed: onPressed,
         color: color,
         shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(rounded == null ? 5.0 : rounded!)),
+          borderRadius: BorderRadius.circular(isRounded
+              ? size != null
+                  ? (size! / 2)
+                  : (height! / 2)
+              : rounded == null
+                  ? 5.0
+                  : rounded!),
+        ),
         child: body(),
         elevation: elevation,
-        padding: pButton ?? const EdgeInsets.all(0),
+        padding: paddingButton ?? const EdgeInsets.all(0),
       ),
     );
   }
 
-  buttonOutlined() => Padding(
-        padding: padding ?? const EdgeInsets.all(0),
+  buttonOutlined() => Container(
+        margin: margin ?? const EdgeInsets.all(0),
         child: OutlinedButton(
           onPressed: onPressed,
           style: OutlinedButton.styleFrom(
@@ -110,8 +119,8 @@ class ButtonSui extends StatelessWidget {
         ),
       );
 
-  buttonOutlinedIcon() => Padding(
-        padding: padding ?? const EdgeInsets.all(0),
+  buttonOutlinedIcon() => Container(
+        margin: margin ?? const EdgeInsets.all(0),
         child: OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
             backgroundColor: backgroundColor,

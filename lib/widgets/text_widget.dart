@@ -74,9 +74,11 @@ class TextSui extends StatelessWidget {
               fontWeight: fontWeight ??
                   (bold
                       ? FontWeight.w700
-                      : light
-                          ? FontWeight.w100
-                          : FontWeight.w500),
+                      : black
+                          ? FontWeight.w900
+                          : light
+                              ? FontWeight.w100
+                              : FontWeight.w400),
             ),
       ),
     );
