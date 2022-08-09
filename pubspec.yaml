@@ -23,7 +23,7 @@ dependencies:
   share_plus: ^4.0.8
   carousel_slider: ^4.1.1
   connectivity_plus: ^2.3.4
-  device_info_plus: ^3.2.4
+  device_info_plus: ^4.0.2
   permission_handler: ^9.2.0
   syncfusion_flutter_calendar: ^20.2.36
   syncfusion_flutter_barcodes: ^20.2.36
@@ -36,6 +36,7 @@ dependencies:
   window_manager: ^0.2.5
   animated_text_kit: ^4.2.2
   encrypt: ^5.0.1
+  file_picker: ^5.0.1
 
 dev_dependencies:
   flutter_test:
