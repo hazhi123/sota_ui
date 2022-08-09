@@ -23,7 +23,7 @@ class ImageSui extends StatelessWidget {
     this.url,
     this.svg,
     this.lottie,
-    this.size = 60.0,
+    this.size = 45.0,
     this.width,
     this.height,
     this.padding,
@@ -87,7 +87,7 @@ class ImageSui extends StatelessWidget {
     Widget heroWidget = Hero(tag: hero, child: imgx);
 
     return Padding(
-      padding: padding ?? const EdgeInsets.all(10.0),
+      padding: padding ?? const EdgeInsets.all(0.0),
       child: hero.isEmpty ? imgx : heroWidget,
     );
   }

@@ -38,15 +38,14 @@ toastSui(
   );
 }
 
-loadingSui({
-  Widget? loading,
-  double? size,
-  double? width,
-  double? height,
-  double? lSize,
-}) {
+loadingSui(
+    {Widget? loading,
+    double? size,
+    double? width,
+    double? height,
+    double? lSize,
+    int? seconds}) {
   Color backgroundColor = Colors.black54;
-  int seconds = 2;
   bool clickClose = false;
   bool allowClick = true;
   bool ignoreContentClick = false;
@@ -63,7 +62,7 @@ loadingSui({
     animationReverseDuration:
         Duration(milliseconds: animationReverseMilliseconds),
     duration: Duration(
-      seconds: seconds,
+      seconds: seconds ?? 2,
     ),
     backgroundColor: backgroundColor,
     align: Alignment.center,
