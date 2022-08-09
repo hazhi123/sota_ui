@@ -22,11 +22,12 @@ modalSui(
   double elevation = 10.0,
   Color backgroundColor = Colors.white,
   Color? barrierColor,
+  Alignment? alignment,
 }) {
   Widget dialog = Dialog(
     elevation: elevation,
     insetPadding: const EdgeInsets.all(0),
-    alignment: Alignment.center,
+    alignment: alignment ?? Alignment.center,
     backgroundColor: transparent ? Colors.transparent : backgroundColor,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
