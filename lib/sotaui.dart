@@ -24,3 +24,4 @@ export 'package:path_provider/path_provider.dart';
 export 'package:window_manager/window_manager.dart';
 export 'package:animated_text_kit/animated_text_kit.dart';
 export 'package:file_picker/file_picker.dart';
+export 'package:image_picker/image_picker.dart';

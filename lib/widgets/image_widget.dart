@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -6,7 +8,7 @@ import 'package:lottie/lottie.dart';
 import '../utils/image_util.dart';
 
 class ImageSui extends StatelessWidget {
-  final String? img, url, svg, lottie;
+  final String? img, url, svg, lottie, file;
   final double size;
   final double? width;
   final double? height;
@@ -22,6 +24,7 @@ class ImageSui extends StatelessWidget {
     this.img,
     this.url,
     this.svg,
+    this.file,
     this.lottie,
     this.size = 45.0,
     this.width,
@@ -42,6 +45,15 @@ class ImageSui extends StatelessWidget {
       image: AssetImage(img ?? dashImg),
       fit: isCover ? BoxFit.cover : fit,
     );
+
+    Widget fileWidget = file == null
+        ? const SizedBox()
+        : Image.file(
+            File(file!),
+            width: width ?? size,
+            height: height ?? size,
+            fit: isCover ? BoxFit.cover : fit,
+          );
 
     Widget svgWidget = SvgPicture.asset(
       svg ?? '',
@@ -82,7 +94,9 @@ class ImageSui extends StatelessWidget {
             ? lottieWidget
             : url != null
                 ? urlWidget
-                : imgWidget;
+                : file != null
+                    ? fileWidget
+                    : imgWidget;
 
     Widget heroWidget = Hero(tag: hero, child: imgx);
 
