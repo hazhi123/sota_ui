@@ -4,7 +4,7 @@ import 'package:sotaui/sotaui.dart';
 
 toastSui(
   String texto, {
-  int seconds = 2,
+  int seconds = 4,
   Color color = Colors.black87,
 }) {
   bool clickClose = false;

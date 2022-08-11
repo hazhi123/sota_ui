@@ -9,7 +9,7 @@ class ModalSui extends StatelessWidget {
   final String titulo;
   final dynamic height, width;
   final dynamic hp, wp;
-  final Color? color;
+  final Color? color, backgroundColor;
   final bool isClose, tWhite;
 
   const ModalSui({
@@ -22,6 +22,7 @@ class ModalSui extends StatelessWidget {
     this.wp,
     this.tWhite = false,
     this.color,
+    this.backgroundColor,
     this.isClose = true,
   }) : super(key: key);
 
@@ -30,7 +31,7 @@ class ModalSui extends StatelessWidget {
     Widget header = Container(
       height: 35,
       decoration: BoxDecoration(
-        color: color,
+        color: color ?? Colors.white,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
@@ -65,9 +66,9 @@ class ModalSui extends StatelessWidget {
 
     return Container(
       width: width ?? wpSui(context, size: wp ?? 85),
-      height: height ?? hpSui(context, size: hp ?? 65),
+      height: height ?? hpSui(context, size: hp ?? 50),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: backgroundColor ?? Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
