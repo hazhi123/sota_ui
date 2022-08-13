@@ -7,10 +7,12 @@ import 'text_widget.dart';
 class ModalSui extends StatelessWidget {
   final Widget child;
   final String titulo;
-  final dynamic height, width;
+  final dynamic height, width, borderRadius;
   final dynamic hp, wp;
   final Color? color, backgroundColor;
   final bool isClose, tWhite;
+  final EdgeInsets? padding;
+  final VoidCallback? onClose;
 
   const ModalSui({
     Key? key,
@@ -20,8 +22,11 @@ class ModalSui extends StatelessWidget {
     this.width,
     this.hp,
     this.wp,
+    this.borderRadius = 10.0,
     this.tWhite = false,
     this.color,
+    this.padding,
+    this.onClose,
     this.backgroundColor,
     this.isClose = true,
   }) : super(key: key);
@@ -30,13 +35,7 @@ class ModalSui extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget header = Container(
       height: 35,
-      decoration: BoxDecoration(
-        color: color ?? Colors.white,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
-        ),
-      ),
+      color: color ?? Colors.white,
       child: Stack(
         children: [
           Center(
@@ -52,7 +51,7 @@ class ModalSui extends StatelessWidget {
               top: 0,
               right: 0,
               child: ButtonSui(
-                onPressed: () => Navigator.pop(context),
+                onPressed: onClose ?? () => Navigator.pop(context),
                 size: 35,
                 tWhite: tWhite,
                 rounded: 10,
@@ -64,24 +63,26 @@ class ModalSui extends StatelessWidget {
       ),
     );
 
-    return Container(
-      width: width ?? wpSui(context, size: wp ?? 85),
-      height: height ?? hpSui(context, size: hp ?? 50),
-      decoration: BoxDecoration(
-        color: backgroundColor ?? Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          header,
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: child,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(borderRadius),
+      child: Container(
+        width: width ?? wpSui(context, size: wp ?? 85),
+        height: height ?? hpSui(context, size: hp ?? 50),
+        decoration: BoxDecoration(
+          color: backgroundColor ?? Colors.white,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            header,
+            Expanded(
+              child: Padding(
+                padding: padding ?? const EdgeInsets.all(10.0),
+                child: child,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

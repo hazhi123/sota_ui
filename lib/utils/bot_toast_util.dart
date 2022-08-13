@@ -87,6 +87,7 @@ notificationSui({
   double? width,
   double? height,
   Color? color,
+  Color? closeColor,
   int time = 10,
 }) {
   bool enableSlideOff = true;
@@ -119,7 +120,7 @@ notificationSui({
               rounded: 15,
               onPressed: cancel,
               icon: Icons.close,
-              tColor: Colors.black,
+              tColor: closeColor ?? Colors.black,
             )
           ],
         ),
