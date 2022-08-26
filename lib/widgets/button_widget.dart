@@ -166,8 +166,11 @@ class ButtonSui extends StatelessWidget {
       : svg != null
           ? ImageSui(
               svg: svg!,
-              size: 30.0,
+              size: iconSize ?? 40.0,
               color: tWhite ? Colors.white : tColor ?? Colors.black,
             )
-          : ImageSui(img: img!);
+          : ImageSui(
+              img: img!,
+              size: iconSize ?? 40.0,
+            );
 }
