@@ -16,7 +16,7 @@ class ButtonSui extends StatelessWidget {
   final IconData? icon;
   final EdgeInsets? padding, paddingButton, margin;
   final double? iconSize, width, height, size, rounded, sizeSvg, lSpacing;
-  final double elevation, tSize;
+  final double elevation, tSize, borderWidth;
 
   const ButtonSui({
     Key? key,
@@ -44,6 +44,7 @@ class ButtonSui extends StatelessWidget {
     this.rounded,
     this.isRounded = false,
     this.backgroundColor,
+    this.borderWidth = 2.0,
     this.sizeSvg,
     this.elevation = 0.0,
   }) : super(key: key);
@@ -111,7 +112,7 @@ class ButtonSui extends StatelessWidget {
           style: OutlinedButton.styleFrom(
             backgroundColor: backgroundColor,
             side: BorderSide(
-              width: 2.0,
+              width: borderWidth,
               color: color ?? Colors.black,
             ),
           ),
@@ -125,7 +126,7 @@ class ButtonSui extends StatelessWidget {
           style: OutlinedButton.styleFrom(
             backgroundColor: backgroundColor,
             side: BorderSide(
-              width: 2.0,
+              width: borderWidth,
               color: color ?? Colors.black,
             ),
           ),
@@ -142,7 +143,7 @@ class ButtonSui extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             if (text != null) textWidget(),
-            if (icon != null) iconWidget()
+            if (icon != null || img != null || svg != null) iconWidget()
           ],
         );
   }
