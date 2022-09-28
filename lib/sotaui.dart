@@ -16,6 +16,7 @@ export 'package:share_plus/share_plus.dart';
 export 'package:sliding_up_panel/sliding_up_panel.dart';
 export 'package:syncfusion_flutter_barcodes/barcodes.dart';
 export 'package:syncfusion_flutter_calendar/calendar.dart';
+export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:dio/dio.dart';
 export 'package:page_transition/page_transition.dart';
