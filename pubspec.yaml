@@ -25,7 +25,6 @@ dependencies:
   connectivity_plus: ^2.3.4
   device_info_plus: ^4.0.2
   permission_handler: ^9.2.0
-  syncfusion_flutter_calendar: ^20.2.50
   syncfusion_flutter_barcodes: ^20.2.50
   sliding_up_panel: ^2.0.0+1
   dio: ^4.0.6
