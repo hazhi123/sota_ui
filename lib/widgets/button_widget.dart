@@ -14,6 +14,7 @@ class ButtonSui extends StatelessWidget {
   final String? text;
   final String? type, svg, img;
   final IconData? icon;
+  final TextAlign? tAlign;
   final EdgeInsets? padding, paddingButton, margin;
   final double? iconSize, width, height, size, rounded, sizeSvg, lSpacing;
   final double elevation, tSize, borderWidth;
@@ -46,6 +47,7 @@ class ButtonSui extends StatelessWidget {
     this.backgroundColor,
     this.borderWidth = 2.0,
     this.sizeSvg,
+    this.tAlign,
     this.elevation = 0.0,
   }) : super(key: key);
 
@@ -155,6 +157,7 @@ class ButtonSui extends StatelessWidget {
         size: tSize,
         bold: tBold,
         lSpacing: lSpacing,
+        align: tAlign,
       );
 
   iconWidget() => icon != null
