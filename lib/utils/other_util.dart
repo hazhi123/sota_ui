@@ -101,3 +101,18 @@ dateformat(tipo, data, {bool inverse = false, String? format}) {
     return dateFormat.parse(data);
   }
 }
+
+class Debouncer {
+  final int? milliseconds;
+  VoidCallback? action;
+  Timer? timer;
+
+  Debouncer({this.milliseconds, this.timer, this.action});
+
+  run(VoidCallback action) {
+    if (null != timer) {
+      timer!.cancel();
+    }
+    timer = Timer(Duration(milliseconds: milliseconds!), action);
+  }
+}
