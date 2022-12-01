@@ -25,4 +25,3 @@ export 'package:animated_text_kit/animated_text_kit.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:table_calendar/table_calendar.dart';
-export 'package:hive_flutter/hive_flutter.dart';
