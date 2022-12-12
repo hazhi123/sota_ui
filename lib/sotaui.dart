@@ -1,6 +1,7 @@
 library sotaui;
 
 export './utils/utils.dart';
+export './services/services.dart';
 export './widgets/widgets.dart';
 export 'package:animate_do/animate_do.dart';
 export 'package:cached_network_image/cached_network_image.dart';
