@@ -46,11 +46,11 @@ dioError(DioError e) {
     );
 
     if (kDebugMode) {
-      logSui('DioError', e);
+      LogSui.Red.msg('DioError', e);
     }
   } catch (e) {
     if (kDebugMode) {
-      logSui('DioError try catch', e);
+      LogSui.Red.msg('DioError try catch', e);
     }
   }
 }

@@ -1,18 +1,8 @@
 import 'dart:async';
-import 'dart:developer' as develop;
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:intl/intl.dart';
-
-logSui(String text, data) {
-  if (kDebugMode) {
-    develop.log('**$text INICIO**');
-    develop.log(data.toString());
-    develop.log('**$text FIN**');
-  }
-}
 
 modalSui(
   BuildContext context, {
@@ -93,6 +83,8 @@ encryptSui(type, data) {
 }
 
 dateformat(tipo, data, {bool inverse = false, String? format}) {
+  if (data == null) return;
+
   DateFormat dateFormat =
       DateFormat(format ?? (inverse ? "dd-MM-yyyy" : "yyyy-MM-dd"), "es");
   if (tipo == 's') {
