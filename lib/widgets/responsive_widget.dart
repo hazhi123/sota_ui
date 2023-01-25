@@ -14,17 +14,18 @@ class ResponsiveSui extends StatelessWidget {
   final Widget? tablet;
   final Widget desktop;
 
-  static bool isMobile(BuildContext context) => wpSui(context) < 850;
+  static bool isMobile(BuildContext context) => wpSui(context) < 600;
 
   static bool isTablet(BuildContext context) =>
-      wpSui(context) < 1100 && wpSui(context) >= 850;
+      wpSui(context) < 1024 && wpSui(context) >= 600;
 
-  static bool isDesktop(BuildContext context) => wpSui(context) >= 1100;
+  static bool isDesktop(BuildContext context) => wpSui(context) >= 1024;
 
   @override
   Widget build(BuildContext context) {
-    bool desktopSize = wpSui(context) >= 1100;
-    bool tabletSize = wpSui(context) < 1100 && wpSui(context) >= 650;
+    bool desktopSize = wpSui(context) >= 1024;
+    bool tabletSize = wpSui(context) < 1024 && wpSui(context) >= 600;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         return AnimatedSwitcher(
