@@ -66,7 +66,7 @@ class ModalSui extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: Container(
-        width: width ?? wpSui(context, size: wp ?? 85),
+        width: width ?? wpSui(context, size: wp ?? 90),
         height: height ?? hpSui(context, size: hp ?? 50),
         decoration: BoxDecoration(
           color: backgroundColor ?? Colors.white,
