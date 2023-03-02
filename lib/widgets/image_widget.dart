@@ -65,7 +65,7 @@ class ImageSui extends StatelessWidget {
 
     Widget urlWidget = CachedNetworkImage(
       imageUrl: url ?? '',
-      fit: fit,
+      fit: isCover ? BoxFit.cover : fit,
       width: width ?? size,
       height: height ?? size,
       placeholder: (context, url) => SpinKitFadingFour(
