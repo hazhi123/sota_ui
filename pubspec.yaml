@@ -51,7 +51,7 @@ dependencies:
   connectivity_plus: ^2.3.4
 
   # https://pub.dev/packages/device_info_plus
-  device_info_plus: ^8.0.0
+  device_info_plus: ^8.2.0
 
   # https://pub.dev/packages/permission_handler
   permission_handler: ^10.2.0
