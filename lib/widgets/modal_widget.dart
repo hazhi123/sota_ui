@@ -12,7 +12,7 @@ class ModalSui extends StatelessWidget {
   final Color? color, backgroundColor;
   final bool isClose, tWhite;
   final EdgeInsets? padding;
-  final VoidCallback? onClose;
+  final VoidCallback? onClose, onBack;
 
   const ModalSui({
     Key? key,
@@ -27,6 +27,7 @@ class ModalSui extends StatelessWidget {
     this.color,
     this.padding,
     this.onClose,
+    this.onBack,
     this.backgroundColor,
     this.isClose = true,
   }) : super(key: key);
@@ -36,29 +37,40 @@ class ModalSui extends StatelessWidget {
     Widget header = Container(
       height: 35,
       color: color ?? Colors.white,
-      child: Stack(
+      child: Row(
         children: [
-          Center(
+          SizedBox(
+            width: 35,
+            height: 35,
+            child: Visibility(
+              visible: onBack != null,
+              child: ButtonSui(
+                onPressed: onBack ?? () => Navigator.pop(context),
+                size: 35,
+                tWhite: tWhite,
+                rounded: 10,
+                icon: Icons.arrow_back,
+                iconSize: 25,
+              ),
+            ),
+          ),
+          Expanded(
             child: TextSui(
               titulo,
               size: 16,
               white: tWhite,
               bold: true,
+              center: true,
             ),
           ),
-          if (isClose)
-            Positioned(
-              top: 0,
-              right: 0,
-              child: ButtonSui(
-                onPressed: onClose ?? () => Navigator.pop(context),
-                size: 35,
-                tWhite: tWhite,
-                rounded: 10,
-                icon: Icons.close,
-                iconSize: 25,
-              ),
-            ),
+          ButtonSui(
+            onPressed: onClose ?? () => Navigator.pop(context),
+            size: 35,
+            tWhite: tWhite,
+            rounded: 10,
+            icon: Icons.close,
+            iconSize: 25,
+          ),
         ],
       ),
     );
@@ -66,7 +78,7 @@ class ModalSui extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: Container(
-        width: width ?? wpSui(context, size: wp ?? 85),
+        width: width ?? wpSui(context, size: wp ?? 90),
         height: height ?? hpSui(context, size: hp ?? 50),
         decoration: BoxDecoration(
           color: backgroundColor ?? Colors.white,

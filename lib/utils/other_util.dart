@@ -102,9 +102,7 @@ class Debouncer {
   Debouncer({this.milliseconds, this.timer, this.action});
 
   run(VoidCallback action) {
-    if (null != timer) {
-      timer!.cancel();
-    }
+    timer?.cancel();
     timer = Timer(Duration(milliseconds: milliseconds!), action);
   }
 }

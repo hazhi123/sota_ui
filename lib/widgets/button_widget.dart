@@ -109,6 +109,7 @@ class ButtonSui extends StatelessWidget {
 
   buttonOutlined() => Container(
         margin: margin ?? const EdgeInsets.all(0),
+        width: width,
         child: OutlinedButton(
           onPressed: onPressed,
           style: OutlinedButton.styleFrom(

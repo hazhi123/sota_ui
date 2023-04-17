@@ -9,7 +9,7 @@ import '../utils/image_util.dart';
 
 class ImageSui extends StatelessWidget {
   final String? img, url, svg, lottie, file;
-  final double size;
+  final double? size;
   final double? width;
   final double? height;
   final bool isCover;
