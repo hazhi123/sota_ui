@@ -9,28 +9,27 @@ dioError(DioError e) {
   try {
     switch (e.type) {
       case DioErrorType.cancel:
-        message = "Se canceló la solicitud al servidor API";
+        message = "Se canceló la solicitud al servidor";
         // message = "Request to API server was cancelled";
         break;
       case DioErrorType.connectTimeout:
-        message = "Tiempo de espera de conexión con el servidor API";
+        message = "Tiempo de espera de conexión con el servidor";
         // message = "Connection timeout with API server";
         break;
       case DioErrorType.other:
         message =
-            "Falló la conexión con el servidor API debido a la conexión a Internet";
+            "Falló la conexión con el servidor debido a la conexión a Internet";
         // message = "Connection to API server failed due to internet connection";
         break;
       case DioErrorType.receiveTimeout:
-        message =
-            "Tiempo de espera de recepción en conexión con el servidor API";
+        message = "Tiempo de espera de recepción en conexión con el servidor";
         // message = "Receive timeout in connection with API server";
         break;
       case DioErrorType.response:
         message = _handleError(e.response!.statusCode!, e.response!.data);
         break;
       case DioErrorType.sendTimeout:
-        message = "Tiempo de espera de envío en conexión con el servidor API";
+        message = "Tiempo de espera de envío en conexión con el servidor";
         // message = "Send timeout in connection with API server";
         break;
       default:

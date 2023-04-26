@@ -35,7 +35,7 @@ class ModalSui extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget header = Container(
-      height: 35,
+      height: 40,
       color: color ?? Colors.white,
       child: Row(
         children: [
@@ -59,6 +59,8 @@ class ModalSui extends StatelessWidget {
               titulo,
               size: 16,
               white: tWhite,
+              maxLines: 2,
+              overflow: true,
               bold: true,
               center: true,
             ),
