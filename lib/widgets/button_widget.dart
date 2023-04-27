@@ -45,7 +45,7 @@ class ButtonSui extends StatelessWidget {
     this.rounded,
     this.isRounded = false,
     this.backgroundColor,
-    this.borderWidth = 2.0,
+    this.borderWidth = 1.2,
     this.sizeSvg,
     this.tAlign,
     this.elevation = 0.0,

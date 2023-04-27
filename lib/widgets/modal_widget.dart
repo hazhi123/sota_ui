@@ -65,13 +65,20 @@ class ModalSui extends StatelessWidget {
               center: true,
             ),
           ),
-          ButtonSui(
-            onPressed: onClose ?? () => Navigator.pop(context),
-            size: 35,
-            tWhite: tWhite,
-            rounded: 10,
-            icon: Icons.close,
-            iconSize: 25,
+          SizedBox(
+            width: 35,
+            height: 35,
+            child: Visibility(
+              visible: isClose,
+              child: ButtonSui(
+                onPressed: onClose ?? () => Navigator.pop(context),
+                size: 35,
+                tWhite: tWhite,
+                rounded: 10,
+                icon: Icons.close,
+                iconSize: 25,
+              ),
+            ),
           ),
         ],
       ),
