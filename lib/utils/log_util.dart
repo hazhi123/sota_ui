@@ -27,7 +27,7 @@ enum LogSui {
   }
 }
 
-// void logSui(String text, data, {String color = ''}) {
+// void LogSui.White.msg(String text, data, {String color = ''}) {
 //   if (kDebugMode) {
 //     developer.log('**$text INICIO**');
 //     switch (color) {
