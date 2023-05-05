@@ -7,10 +7,10 @@ import 'text_widget.dart';
 class ModalSui extends StatelessWidget {
   final Widget child;
   final String titulo;
-  final dynamic height, width, borderRadius;
+  final double? height, width, borderRadius;
   final dynamic hp, wp;
   final Color? color, backgroundColor;
-  final bool isClose, tWhite;
+  final bool isClose, tWhite, isHeader;
   final EdgeInsets? padding;
   final VoidCallback? onClose, onBack;
 
@@ -20,6 +20,7 @@ class ModalSui extends StatelessWidget {
     required this.titulo,
     this.height,
     this.width,
+    this.isHeader = true,
     this.hp,
     this.wp,
     this.borderRadius = 10.0,
@@ -85,7 +86,7 @@ class ModalSui extends StatelessWidget {
     );
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(borderRadius!),
       child: Container(
         width: width ?? wpSui(context, size: wp ?? 90),
         height: height ?? hpSui(context, size: hp ?? 50),
@@ -95,7 +96,7 @@ class ModalSui extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            header,
+            Visibility(visible: isHeader, child: header),
             Expanded(
               child: Padding(
                 padding: padding ?? const EdgeInsets.all(10.0),
