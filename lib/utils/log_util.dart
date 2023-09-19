@@ -1,5 +1,5 @@
 import 'dart:developer' as developer;
-
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 enum LogSui {
@@ -16,13 +16,21 @@ enum LogSui {
   const LogSui(this.code);
 
   void msg(dynamic text, data) {
-    if (kDebugMode) {
-      developer.log('|-');
-      developer.log('|--');
-      developer.log('|---');
-      developer.log('**===== $text =====**');
-      developer.log('\x1B[' + code + 'm' + data.toString() + '\x1B[0m');
-      developer.log('**----- $text -----**');
+    try {
+      var textData = data == null
+          ? jsonEncode(data)
+          : const JsonEncoder.withIndent('  ').convert(data);
+
+      if (kDebugMode) {
+        developer.log('|-');
+        developer.log('|--');
+        developer.log('|---');
+        developer.log('**===== $text =====**');
+        developer.log('\x1B[' + code + 'm' + textData.toString() + '\x1B[0m');
+        developer.log('**----- $text -----**');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }
@@ -55,4 +63,3 @@ enum LogSui {
 //     developer.log('**$text FIN**');
 //   }
 // }
-
