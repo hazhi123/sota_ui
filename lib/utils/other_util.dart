@@ -1,7 +1,8 @@
 import 'dart:async';
+
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/material.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 modalSui(
@@ -82,15 +83,31 @@ encryptSui(type, data) {
   return enc;
 }
 
-dateformat(tipo, data, {bool inverse = false, String? format}) {
-  if (data == null) return;
+dateformat(
+  isFormat,
+  data, {
+  bool inverse = false,
+  String? format,
+  bool fecha = false,
+  natural = false,
+}) {
+  String formatString = "yyyy-MM-dd";
 
-  DateFormat dateFormat =
-      DateFormat(format ?? (inverse ? "dd-MM-yyyy" : "yyyy-MM-dd"), "es");
-  if (tipo == 's') {
-    return dateFormat.format(data);
+  if (format != null) {
+    formatString = format;
+  } else if (natural) {
+    formatString = "dd MMMM, yyyy";
+  } else if (fecha) {
+    formatString = "dd/MM/yyyy";
+  } else if (inverse) {
+    formatString = "dd-MM-yyyy";
+  }
+
+  DateFormat dateFormat = DateFormat(formatString, "es");
+  if (isFormat) {
+    return dateFormat.format(data ?? DateTime.now());
   } else {
-    return dateFormat.parse(data);
+    return data == null ? DateTime.now() : dateFormat.parse(data);
   }
 }
 
@@ -105,4 +122,36 @@ class Debouncer {
     timer?.cancel();
     timer = Timer(Duration(milliseconds: milliseconds!), action);
   }
+}
+
+DateTime geterDateUtil({DateTime? date}) {
+  if (date == null) date = DateTime.now();
+
+  return DateTime(date.year, date.month, date.day, 12, 00, 00);
+}
+
+DateTime geterTimeUtil({DateTime? fechaDefault, DateTime? date}) {
+  if (date == null) date = DateTime.now();
+
+  if (fechaDefault == null) fechaDefault = DateTime.now();
+
+  return DateTime(
+    fechaDefault.year,
+    fechaDefault.month,
+    fechaDefault.day,
+    date.hour,
+    date.minute,
+  );
+}
+
+DateTime geterDateTimeUtil({DateTime? date}) {
+  if (date == null) date = DateTime.now();
+
+  return DateTime(
+    date.year,
+    date.month,
+    date.day,
+    date.hour,
+    date.minute,
+  );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'image_widget.dart';
 import 'text_widget.dart';
 
@@ -78,15 +79,9 @@ class ButtonSui extends StatelessWidget {
       );
 
   buttonMaterial() {
-    double pd = 0.0;
-    if (elevation != 0.0) {
-      pd = 8.0;
-    }
-
     return Container(
       width: width ?? size,
       height: height ?? size,
-      padding: EdgeInsets.all(pd),
       margin: margin,
       child: MaterialButton(
         onPressed: onPressed,
