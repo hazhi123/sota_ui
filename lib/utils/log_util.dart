@@ -1,5 +1,7 @@
-import 'dart:developer' as developer;
 import 'dart:convert';
+import 'dart:developer' as developer;
+
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 enum LogSui {
@@ -28,6 +30,23 @@ enum LogSui {
         developer.log('**===== $text =====**');
         developer.log('\x1B[' + code + 'm' + textData.toString() + '\x1B[0m');
         developer.log('**----- $text -----**');
+        developer.log('|---');
+        developer.log('|--');
+        developer.log('|-');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void log(data) {
+    try {
+      var textData = data == null
+          ? jsonEncode(data)
+          : const JsonEncoder.withIndent('  ').convert(data);
+
+      if (kDebugMode) {
+        developer.log('\x1B[' + code + 'm' + textData.toString() + '\x1B[0m');
       }
     } catch (e) {
       print(e);
@@ -35,31 +54,51 @@ enum LogSui {
   }
 }
 
-// void logSui(String text, data, {String color = ''}) {
-//   if (kDebugMode) {
-//     developer.log('**$text INICIO**');
-//     switch (color) {
-//       case 'red':
-//         developer.log('\x1B[31m$data\x1B[31m');
-//         break;
-//       case 'green':
-//         developer.log('\x1B[32m$data\x1B[32m');
-//         break;
-//       case 'yellow':
-//         developer.log('\x1B[33m$data\x1B[33m');
-//         break;
-//       case 'blue':
-//         developer.log('\x1B[34m$data\x1B[34m');
-//         break;
-//       case 'magenta':
-//         developer.log('\x1B[35m$data\x1B[35m');
-//         break;
-//       case 'cyan':
-//         developer.log('\x1B[36m$data\x1B[36m');
-//         break;
-//       default:
-//         developer.log('\x1B[37m$data\x1B[37m');
-//     }
-//     developer.log('**$text FIN**');
-//   }
-// }
+Response ResponseSui(
+  String method,
+  Response<dynamic> response, {
+  Map<String, dynamic>? params,
+  Map<dynamic, dynamic>? data,
+}) {
+  if (kDebugMode) {
+    final logColors = {
+      'create': LogSui.Green,
+      'getAll': LogSui.White,
+      'getOne': LogSui.Yellow,
+      'update': LogSui.Cyan,
+      'delete': LogSui.Red,
+    };
+
+    developer.log('**===== API-URL $method =====**');
+    for (var i = 0; i < 2; i++) developer.log('$i--');
+
+    developer.log('----------- RESPONSE -----------');
+    LogSui.Magenta.log({
+      'statusCode': response.statusCode,
+      'statusMessage': response.statusMessage,
+      'method': response.requestOptions.method,
+      'path': response.requestOptions.path,
+    });
+    for (var i = 0; i < 2; i++) developer.log('$i--');
+
+    if (data != null) {
+      developer.log('----------- DATA -----------');
+      LogSui.Cyan.log(data);
+      for (var i = 0; i < 2; i++) developer.log('$i--');
+    }
+
+    if (params != null) {
+      developer.log('----------- PARAMS -----------');
+      LogSui.Cyan.log(params);
+      for (var i = 0; i < 2; i++) developer.log('$i--');
+    }
+
+    if (logColors.containsKey(method)) {
+      logColors[method]!.log(response.data);
+    }
+
+    developer.log('**===== END API-URL $method =====**');
+  }
+
+  return response;
+}

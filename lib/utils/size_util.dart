@@ -10,7 +10,7 @@ hpSui(BuildContext context, {int? size}) {
   return MediaQuery.of(context).size.height / 100 * size;
 }
 
-spSui(BuildContext context, {int? size}) {
+spSui(BuildContext context, {double? size}) {
   if (size == null) return MediaQuery.of(context).size;
   return MediaQuery.of(context).size.height / 100 * size;
 }

@@ -429,14 +429,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
-  majascan:
-    dependency: "direct main"
-    description:
-      name: majascan
-      sha256: "530ba542909a9a938e4be722f403523884a9176f61af0e25cb05afbc27dcbd64"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.0"
   matcher:
     dependency: transitive
     description:

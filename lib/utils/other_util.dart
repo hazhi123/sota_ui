@@ -85,7 +85,7 @@ encryptSui(type, data) {
 
 dateformat(
   isFormat,
-  data, {
+  date, {
   bool inverse = false,
   String? format,
   bool fecha = false,
@@ -105,9 +105,9 @@ dateformat(
 
   DateFormat dateFormat = DateFormat(formatString, "es");
   if (isFormat) {
-    return dateFormat.format(data ?? DateTime.now());
+    return dateFormat.format(date ?? DateTime.now());
   } else {
-    return data == null ? DateTime.now() : dateFormat.parse(data);
+    return date == null ? DateTime.now() : dateFormat.parse(date);
   }
 }
 
